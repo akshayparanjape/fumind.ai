@@ -17,15 +17,76 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
         
+        /* Navigation tabs */
+        .navigation {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-tab {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-tab:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            transition: width 0.3s;
+        }
+        
+        .nav-tab:hover {
+            opacity: 0.9;
+        }
+        
+        .nav-tab:hover:after {
+            width: 100%;
+        }
+        
+        /* Content */
         .container {
             text-align: center;
             padding: 2rem;
             max-width: 800px;
-            margin-bottom: 2rem;
+            margin: 2rem 0;
         }
         
         .logo {
@@ -150,7 +211,7 @@
         }
         
         button {
-            background: linear-gradient(to right, #3498db, #2ecc71);
+            background-color: #333333;
             color: #fff;
             border: none;
             padding: 1rem;
@@ -175,10 +236,102 @@
             border-radius: 5px;
             background-color: rgba(46, 204, 113, 0.2);
         }
+        
+        .file-input-container {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-input-label {
+            display: block;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-input-label:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .file-name {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Page content sections */
+        .content-section {
+            display: none;
+            max-width: 800px;
+            width: 90%;
+            margin: 1rem auto;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .content-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-tabs {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Navigation Tabs -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">fumind.ai</div>
+            <div class="nav-tabs">
+                <a href="#" class="nav-tab" data-tab="home" id="home-tab">Home</a>
+                <a href="#" class="nav-tab" data-tab="about" id="about-tab">About Us</a>
+                <a href="#" class="nav-tab" data-tab="vision" id="vision-tab">Our Vision</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Home Section (default view) -->
+    <div class="container" id="home-section">
         <div class="logo">fumind.ai</div>
         <div class="tagline">The Future of Manufacturing Industry with Artificial Intelligence</div>
         <div class="stay-tuned">STAY TUNED</div>
@@ -189,6 +342,27 @@
         </div>
     </div>
     
+    <!-- About Us Section -->
+    <div class="content-section" id="about-section">
+        <h2>About Us</h2>
+        <p>fumind.ai is pioneering the integration of advanced artificial intelligence solutions into manufacturing processes. Founded by a team of industry experts with decades of combined experience, we're on a mission to transform traditional manufacturing industries through cutting-edge AI technology.</p>
+        <p>Our team combines expertise in machine learning, robotics, computer vision, and manufacturing engineering to create holistic solutions that address real-world challenges faced by manufacturers today.</p>
+        <p>Based in Germany, we leverage the country's strong tradition of engineering excellence while pushing the boundaries of what's possible with modern technology.</p>
+    </div>
+    
+    <!-- Our Vision Section -->
+    <div class="content-section" id="vision-section">
+        <h2>Our Vision</h2>
+        <p>At fumind.ai, we envision a future where manufacturing processes are smarter, more efficient, and more sustainable through the power of artificial intelligence.</p>
+        <p>We believe that AI will revolutionize manufacturing by enabling:</p>
+        <p>• Predictive maintenance that prevents costly downtime<br>
+        • Intelligent quality control that approaches zero-defect manufacturing<br>
+        • Optimized supply chains that reduce waste and environmental impact<br>
+        • Adaptive production systems that respond in real-time to changing conditions</p>
+        <p>Our goal is to make these technologies accessible to manufacturers of all sizes, democratizing AI and helping the industry transition into a new era of smart manufacturing.</p>
+    </div>
+    
+    <!-- Contact Form -->
     <div class="contact-section">
         <div class="contact-heading">Get in Touch</div>
         <form class="contact-form" id="contactForm">
@@ -208,6 +382,17 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="message" required></textarea>
             </div>
+            <div class="form-group">
+                <label>Your Data</label>
+                <div class="file-input-container">
+                    <label class="file-input-label" for="fileUpload">
+                        Drag and drop files here or click to upload
+                        <div class="file-name" id="fileName">No file selected</div>
+                    </label>
+                    <input type="file" id="fileUpload" class="file-input" name="fileUpload">
+                </div>
+                <div class="file-type-note">Accepts any file format</div>
+            </div>
             <button type="button" id="submitBtn">Send Message</button>
             <div class="message" id="responseMessage">Thank you for your message. We'll contact you soon!</div>
         </form>
@@ -218,15 +403,52 @@
     </div>
 
     <script>
+        // File upload handling
+        document.getElementById('fileUpload').addEventListener('change', function() {
+            const fileName = this.files.length > 0 ? this.files[0].name : 'No file selected';
+            document.getElementById('fileName').textContent = fileName;
+        });
+        
+        // Form submission
         document.getElementById('submitBtn').addEventListener('click', function() {
-            const form = document.getElementById('contactForm');
             const message = document.getElementById('responseMessage');
-            
-            // Just show the thank you message without sending data
             message.style.display = 'block';
-            
-            // Optional: Clear the form fields
-            // form.reset();
+        });
+        
+        // Tab navigation
+        const tabs = document.querySelectorAll('.nav-tab');
+        const homeSec = document.getElementById('home-section');
+        const aboutSec = document.getElementById('about-section');
+        const visionSec = document.getElementById('vision-section');
+        
+        // Set home as default
+        document.getElementById('home-tab').classList.add('active');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Hide all sections
+                homeSec.style.display = 'none';
+                aboutSec.style.display = 'none';
+                visionSec.style.display = 'none';
+                
+                // Show selected section
+                const tabId = this.getAttribute('data-tab');
+                if(tabId === 'home') {
+                    homeSec.style.display = 'block';
+                } else if(tabId === 'about') {
+                    aboutSec.style.display = 'block';
+                } else if(tabId === 'vision') {
+                    visionSec.style.display = 'block';
+                }
+            });
         });
     </script>
 </body>
