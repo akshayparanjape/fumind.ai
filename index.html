@@ -166,6 +166,15 @@
             transform: translateY(-2px);
             opacity: 0.9;
         }
+        
+        .message {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 5px;
+            background-color: rgba(46, 204, 113, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -182,7 +191,7 @@
     
     <div class="contact-section">
         <div class="contact-heading">Get in Touch</div>
-        <form class="contact-form" action="https://formsubmit.co/akshay.paranjape@fumind.ai" method="POST">
+        <form class="contact-form" id="contactForm">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
@@ -199,12 +208,26 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="message" required></textarea>
             </div>
-            <button type="submit">Send Message</button>
+            <button type="button" id="submitBtn">Send Message</button>
+            <div class="message" id="responseMessage">Thank you for your message. We'll contact you soon!</div>
         </form>
     </div>
     
     <div class="footer">
         &copy; 2025 fumind.ai. All Rights Reserved. Based in Germany.
     </div>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const form = document.getElementById('contactForm');
+            const message = document.getElementById('responseMessage');
+            
+            // Just show the thank you message without sending data
+            message.style.display = 'block';
+            
+            // Optional: Clear the form fields
+            // form.reset();
+        });
+    </script>
 </body>
 </html>
